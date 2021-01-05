@@ -123,7 +123,7 @@ server <- function(input, output) {
     
     output$RecordTable <- DT::renderDataTable({
         DT::datatable(
-            df %>% 
+            beach_matches %>% 
                 filter(Gender %in% input$SelectGender,TeamAConfederation == 'CEV' | TeamBConfederation == 'CEV', Year %in% input$SelectYear, TypeName %in% input$SelectTourn) %>%
                 pivot_longer(c('TeamAName', 'TeamBName'), values_to = 'TeamName') %>% 
                 mutate(TeamFederation = ifelse(name == 'TeamAName', TeamAFederationCode, TeamBFederationCode),
